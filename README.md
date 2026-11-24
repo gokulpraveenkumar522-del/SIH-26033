@@ -1,162 +1,175 @@
 # Smart India Hackathon Workshop
-# Date: 24-11-2026
+
+# Date: 24 November 2026
+
 ## Reference Number: 26019369
+
 ## Name: GOKUL SP
 
 ## Problem Title
+
 SIH 26033: Multiple intermediaries reduce farmers earnings and increase consumer prices.
 
 ## Problem Creater's Organization
+
 Ministry of Consumer Affairs, Food & Public Distribution
 
 ## Theme
+
 Agriculture, FoodTech & Rural Development
 
 ## Problem Description
+
 Expected Solution: Create a digital marketplace that:
 
-• Connects farmers/FPOs directly with consumers and bulk buyers.
-• Provides logistics support.
-• Uses AI for demand forecasting and route optimization.
+• Connects farmers/FPOs directly with consumers and bulk buyers. • Provides logistics support. • Uses AI for demand forecasting and route optimization.
 
-## Benefits:
+Benefits:
 
-• Better prices for farmers.
-• Lower prices for consumers.
-• Reduced supply chain inefficiencies.
+• Better prices for farmers. • Lower prices for consumers. • Reduced supply chain inefficiencies.
 
 ## Proposed Solution
 
-1. Detailed explanation of the proposed solution
+**1. Detailed explanation of the proposed solution**
 
-HarvestBridge connects farmers to buyers before the crop is harvested. Buyers commit to quantity and price ranges in advance, so farmers no longer have to accept whatever the local trader offers at harvest time.
+*KisanLink* is a pre-booking based farm-to-buyer marketplace. Instead of farmers harvesting first and searching for a buyer later, buyers commit to orders before or during the crop cycle, so farmers know their price and demand in advance.
 
-Pre-harvest contract engine: Buyers (retailers, processors, institutional kitchens, exporters) post demand requests such as "20 tonnes of tomatoes, Grade A, delivery in 6 weeks". Farmers or FPOs accept them in groups, and the platform splits the quantity fairly among the members.
-WhatsApp and IVR-first access: Farmers without a smartphone app habit can register, view offers, accept contracts and check payments through a WhatsApp chatbot or a toll-free voice call in their own language.
-AI quality grading: The farmer photographs the produce, and an on-device vision model gives an instant grade (size, colour, defects). This reduces disputes at the buyer's end.
-Village micro-hubs: Local entrepreneurs run small collection and weighing points with digital scales that sync automatically with the platform.
-Warehouse receipt credit: Produce stored at a hub gets a digital receipt, which farmers can use to get a short-term loan instead of making a distress sale.
-QR traceability: Every lot carries a QR code, so buyers can see the farm, harvest date and grade.
+- **Pre-booking and forward orders:** Bulk buyers (hotels, retailers, canteens, processors) and neighbourhood consumer groups reserve quantities of a crop for a future date at an agreed price band.
+- **Village Hub model:** Each FPO or village runs a small collection hub where produce is weighed, graded and packed. A trained local "Kisan Mitra" operates the hub and helps farmers who are not comfortable with smartphones.
+- **Multi-channel access:** Farmers can use the app, a WhatsApp-style chat bot, or an IVR phone call in their own language, so feature phones are also supported.
+- **Community group-buying:** Apartments, hostels and housing societies pool weekly orders, which gives farmers bigger and predictable drop volumes.
+- **Integrated logistics:** The platform pools loads from nearby hubs and assigns the nearest available vehicle.
+- **AI layer:** Forecasts demand and price per crop and district, suggests fair-price bands, and plans pickup and delivery routes.
+- **Open and interoperable:** Listings can be published on open commerce networks such as ONDC so that the platform plugs into existing buyer apps.
 
-2. How it addresses the problem
+**2. How it addresses the problem**
 
-Problem	How HarvestBridge addresses it
-Farmers sell at harvest-time lows	Pre-harvest contracts lock in a price band before sowing or harvest
-Middlemen control price information	Buyer demand and price ranges are visible to farmers in advance
-Grading disputes reduce the price	Photo-based AI grading gives an objective, recorded grade
-Small farmers can't reach bulk buyers	Group acceptance of contracts through FPOs and village hubs
-Cash-flow pressure forces distress sales	Warehouse-receipt loans let farmers wait for a better price
-Low smartphone and app literacy	WhatsApp bot and voice (IVR) access in regional languages
+- Direct pre-bookings between hubs and buyers replace the chain of traders and commission agents.
+- Advance demand visibility reduces distress selling and post-harvest wastage.
+- Pooled transport and fewer handling points lower the cost per kg, so consumer prices fall while the farmer's share rises.
+- A published fair-price band, built from mandi data and AI forecasts, prevents under-pricing of farmers' produce.
+- Payments are made to the farmer's bank account through UPI soon after delivery confirmation.
 
-3. Innovation and uniqueness
+**3. Innovation and uniqueness of the solution**
 
-Shifts the model from "list and sell" to "demand first, grow and supply second".
-Works over WhatsApp and phone calls, so it does not depend on app adoption.
-Combines contract farming, AI grading and credit in one flow.
-Fair-share algorithm that divides large orders among small farmers by capacity and past reliability.
-Reliability score for each farmer, which unlocks better contracts and lower loan rates over time.
-End-to-end QR traceability that gives buyers confidence and earns a quality premium.
-Technical Approach
+- Pre-booking and forward demand model instead of a plain listing site.
+- Phone-call (IVR) and chat access for farmers who do not use smartphones.
+- Village hubs run by local Kisan Mitras, creating rural jobs and a trusted last-mile touchpoint.
+- Group-buying for consumers to make demand predictable.
+- Fair-price band with a visible "farmer share" meter for each order.
+- Open-network integration instead of a closed, single-vendor marketplace.
 
-1. Technologies to be used
+## Technical Approach
 
-Frontend: Flutter (lightweight farmer and hub-operator app), React.js (buyer and admin dashboard)
-Messaging and voice: WhatsApp Business API, Twilio or Exotel for IVR, Bhashini for speech and translation
-Backend: Python FastAPI with Celery for background jobs, REST APIs
-Database: PostgreSQL with PostGIS (users, contracts, hubs, geo data), Redis (queues and caching), S3-compatible storage (images, receipts)
-AI/ML: TensorFlow Lite with MobileNet or YOLO for produce grading, gradient boosting (XGBoost) for price-band prediction, a rule-based allocation engine for fair-share distribution
-IoT: Bluetooth/Wi-Fi digital weighing scales at hubs
-Payments and credit: UPI payouts, Account Aggregator framework for consent-based credit scoring, integration with an NBFC or bank partner for receipt-backed loans
-Data sources: Agmarknet and e-NAM prices, IMD weather and rainfall data, crop-sowing data
-Cloud and DevOps: Docker, Kubernetes, AWS or Azure, GitHub Actions
-Security: OTP and Aadhaar-optional KYC, role-based access, audit logs, encryption at rest and in transit
+**1. Technologies to be used**
 
-2. Methodology and process for implementation
+- **Mobile app:** Flutter (farmer, buyer and Kisan Mitra apps) with offline support
+- **Web portal:** React.js and Tailwind CSS (admin and bulk buyer dashboard)
+- **Backend:** Python with Django REST Framework, Celery for background jobs
+- **Database:** PostgreSQL with PostGIS (location and routing data), Redis for caching, Firebase for notifications
+- **AI/ML:** XGBoost and LSTM models for price and demand forecasting, Google OR-Tools for vehicle routing and load pooling
+- **Voice and language:** Speech recognition and translation for regional languages, IVR through a telephony provider
+- **Payments:** UPI with escrow-style settlement
+- **Data inputs:** Agmarknet and e-NAM mandi prices, IMD weather data, past arrival data
+- **Deployment:** Docker, cloud hosting, CI/CD with GitHub Actions
+- **Security:** OTP login, role-based access control, encrypted data and audit logs
 
-Field survey of farmers, hub operators and bulk buyers; collection of grading standards for selected crops.
-Collection of produce images and training of the grading model for 2 to 3 crops.
-Build the contract engine, allocation logic and WhatsApp/IVR flows.
-Develop the hub-operator app and buyer dashboard.
-Integrate weighing scales, UPI payouts and QR code generation.
-Pilot in one block with one FPO and one institutional buyer.
-Add warehouse-receipt credit, then expand to more crops and districts.
+**2. Methodology and process for implementation**
 
-Process flow
+1. Survey farmers, FPOs and buyers in a pilot district and gather price datasets.
+2. Design the data model, APIs and simple, icon-driven screens.
+3. Build the order and pre-booking engine, then the hub and Kisan Mitra workflow.
+4. Train and validate forecasting models and connect the routing engine.
+5. Integrate payments, IVR and chat channels.
+6. Run a pilot with one FPO cluster for one crop season, measure results and refine.
+7. Expand to more crops, hubs and districts.
 
-Buyer posts demand: crop,grade, quantity, date
-Platform matches nearbyFPOs and farmers
-Farmers accept viaWhatsApp / IVR / app
-Fair-share allocation amongfarmers
-Harvest and photo-based AIgrading
-Weighing and QR taggingat village hub
-Pickup and delivery tobuyer
-Buyer confirms quality andquantity
-UPI payout to farmers
-Reliability score updatedand credit unlocked
+**Process flow**
 
-System architecture
+```mermaid
+flowchart TD
+    A[Buyer or buyer group pre-books crop and quantity] --> B[AI sets fair-price band]
+    B --> C[Order matched to nearby village hubs and FPOs]
+    C --> D[Farmers harvest and deliver to hub]
+    D --> E[Hub grades, weighs and packs produce]
+    E --> F[Pooled load and optimised route assigned]
+    F --> G[Delivery and buyer confirmation]
+    G --> H[UPI payment to farmers]
+    H --> I[Data feeds back to improve forecasts]
+```
 
-WhatsApp Bot
-API Gateway
-IVR Voice Line
-Farmer / Hub App
-Buyer Dashboard
-Contract and AllocationService
-Grading Service: on-deviceand cloud models
-Hub and Warehouse Service
-Payment and Credit Service
-PostgreSQL + PostGIS
-Digital scales
-Mandi, weather and sowingdata
+**System architecture**
 
-Working prototype / screenshots: to be added here.
+```mermaid
+flowchart LR
+    F[Farmer: App, Chat, IVR] --> G[API Layer]
+    K[Kisan Mitra App] --> G
+    B[Buyer App / Web / ONDC] --> G
+    G --> O[Order and Pre-booking Service]
+    G --> H[Hub and Inventory Service]
+    G --> T[Transport Service]
+    G --> Y[Payment Service]
+    G --> A[AI: Forecast and Routing]
+    O --> DB[(PostgreSQL + PostGIS)]
+    H --> DB
+    T --> DB
+    Y --> DB
+    A --> DB
+    A --> X[Mandi, weather and arrival data]
+```
 
-Feasibility and Viability
+*Working prototype / screenshots: add here.*
 
-1. Analysis of the feasibility of the idea
+## Feasibility and Viability
 
-Technical: WhatsApp APIs, image classification, UPI and geospatial databases are mature, and grading models can start with only a few crops.
-Operational: Uses existing FPOs and local entrepreneurs as hub operators, so there is no need to build physical infrastructure from scratch.
-Economic: Revenue from a small contract-facilitation fee, grading fees from buyers, hub service charges, and interest sharing on receipt-backed loans.
-Social: Familiarity with WhatsApp and UPI in rural areas, together with FPO promotion schemes, supports adoption.
+**1. Analysis of the feasibility of the idea**
 
-2. Potential challenges and risks
+- **Technical:** Built on proven tools (Flutter, Django, PostgreSQL, OR-Tools); forecasting uses public mandi and weather data.
+- **Operational:** FPOs, cooperatives and self-help groups already exist and can host hubs, so the model builds on existing structures.
+- **Financial:** Income from a small service fee per order, transport pooling margin and paid forecasting reports for bulk buyers. The fee stays well below traditional commission rates.
+- **Adoption:** Voice and IVR channels remove the smartphone barrier, and group buying gives consumers a clear reason to join.
 
-Contract defaults by buyers or farmers (side-selling when market prices rise)
-Accuracy of AI grading under varied lighting and crop varieties
-Weather or pest losses that prevent farmers from meeting commitments
-Hub operator training and trust-building
-Regulatory compliance for contract farming and lending
-Initial shortage of committed buyers
+**2. Potential challenges and risks**
 
-3. Strategies for overcoming these challenges
+- Farmers or buyers failing to honour pre-booked orders
+- Price swings between booking and delivery
+- Produce quality variation and grading disputes
+- Perishable losses and limited cold storage
+- Initial trust and slow digital adoption
+- Hub operating cost in the early phase
 
-Price bands with a floor and ceiling so both sides gain from fair pricing, plus penalties and reliability scores to discourage side-selling
-Retrain the grading model continuously with field images, and allow a human re-check for disputed lots
-Tolerance clauses for weather loss, and optional crop-insurance linkage
-Local-language training and small incentives for hub operators
-Partner with licensed NBFCs and follow the state APMC and model contract farming guidelines
-Start with institutional buyers (hotel chains, school meal programmes, processors) who need steady supply
-Impact and Benefits
+**3. Strategies for overcoming these challenges**
 
-1. Potential impact on the target audience
+- Small advance deposits, ratings and penalties for repeated cancellations, with substitute supply from nearby hubs
+- Price bands with revision rules instead of fixed prices, based on forecasts
+- Standard grading sheets, photo proof at the hub and a quick dispute resolution process
+- Priority routing for perishables and tie-ups with existing cold storage
+- Onboard through FPOs and Kisan Mitras, with demonstrations at village level
+- Start with two or three crops in one district and fund hub costs through pilot grants and service fees
 
-Farmers/FPOs: Price certainty before harvest, fewer distress sales, access to credit and bigger markets.
-Buyers: Predictable supply, consistent quality and traceable sourcing.
-Hub operators and youth: New rural entrepreneurship and employment.
-Government and banks: Better data on sowing and supply, and safer lending backed by receipts.
+## Impact and Benefits
 
-2. Benefits of the solution
+**1. Potential impact on the target audience**
 
-Economic: Higher and more stable farmer income, lower buyer procurement risk, and reduced dependence on informal moneylenders.
-Social: Includes small and marginal farmers in organized markets, and builds digital and financial inclusion.
-Environmental: Planned production reduces surplus and spoilage, and consolidated pickups lower transport emissions.
-Supply chain efficiency: Fewer handoffs, objective grading and faster, traceable settlement.
-Research and References
-Agmarknet, mandi price and arrival data: https://agmarknet.gov.in
-e-NAM (National Agriculture Market): https://enam.gov.in
-Warehousing Development and Regulatory Authority (WDRA), e-NWR: https://wdra.gov.in
-Account Aggregator framework (Sahamati): https://sahamati.org.in
-Open Network for Digital Commerce (ONDC): https://ondc.org
-TensorFlow Lite, on-device machine learning: https://www.tensorflow.org/lite
-Bhashini, Indian language AI services: https://bhashini.gov.in
+- **Farmers and FPOs:** Assured demand, a higher share of the consumer price, faster payments and less distress selling.
+- **Consumers:** Fresher produce at lower and more stable prices, with clear price breakdowns.
+- **Bulk buyers:** Predictable quality and supply through advance contracts.
+- **Rural youth and women:** Jobs as Kisan Mitras, graders and drivers.
+- **Government:** Real-time data on supply, prices and wastage to support policy.
+
+**2. Benefits of the solution**
+
+- **Economic:** Improved farm income, lower consumer prices, and a smaller margin lost to intermediaries.
+- **Social:** Inclusion of small and marginal farmers and of users without smartphones, plus local employment.
+- **Environmental:** Less food waste through demand-based harvesting, and lower fuel use through pooled and optimised routes.
+- **Operational:** Fewer handling stages, shorter delivery time and better price discovery.
+
+## Research and References
+
+1. e-NAM, National Agriculture Market: https://enam.gov.in
+2. Agmarknet, mandi prices and arrivals: https://agmarknet.gov.in
+3. ONDC, Open Network for Digital Commerce: https://ondc.org
+4. SFAC, support for Farmer Producer Organizations: https://sfacindia.com
+5. Google OR-Tools, vehicle routing: https://developers.google.com/optimization/routing
+6. XGBoost documentation: https://xgboost.readthedocs.io
+7. Bhashini, Indian language technology: https://bhashini.gov.in
